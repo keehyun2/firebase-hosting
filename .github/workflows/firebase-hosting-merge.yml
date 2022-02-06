@@ -12,13 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
  
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ALERT_BILLING }}'
-          channelId: live
-          projectId: alert-billing
-
       - name: Install functions npm packages
         run: |
           cd functions
@@ -26,6 +19,13 @@ jobs:
       - name:  Deploy functions to Firebase
         uses: w9jds/firebase-action@master
         with:
-            args: deploy --only functions
+          args: deploy --only functions
         env:
-            FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ALERT_BILLING }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ALERT_BILLING }}'
+          channelId: live
+          projectId: alert-billing
