@@ -1,3 +1,11 @@
+firebase cli 설치
+```
+npm install -g firebase-tools
+```
+구글 계정 통해서 firebase 로그인
+```
+firebase login
+```
 localhost 서버 실행
 ```
 firebase serve  
