@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: add adminsdk json 
+        env: 
+          FIREBASE_ADMINSDK_JSON: ${{ secrets.FIREBASE_ADMINSDK_JSON }}
+        run: |
+          echo "$FIREBASE_ADMINSDK_JSON" > functions/api/kakao/alert-billing-firebase-adminsdk-y2m7t-d917d6b941.json
  
       - name: Install functions npm packages
         run: |
